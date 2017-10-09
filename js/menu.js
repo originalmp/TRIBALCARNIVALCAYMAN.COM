@@ -39,6 +39,7 @@
 		// click event (if mobile use touchstart)
 		clickevent = mobilecheck() ? 'touchstart' : 'click';
 
+			var show = false;
 	function init() {
 		var showMenu = document.getElementById( 'showMenu' ),
 			perspectiveWrapper = document.getElementById( 'perspective' ),
@@ -56,7 +57,17 @@
 			// add modalview class
 			classie.add( perspectiveWrapper, 'modalview' );
 			// animate..
-			setTimeout( function() { classie.add( perspectiveWrapper, 'animate' ); }, 25 );
+			if (show) {
+				container.click();
+				show = false;
+			} else {
+				setTimeout( function() {
+					classie.add(
+					perspectiveWrapper, 'animate'
+				); }, 25 );
+				show = true;
+			}
+			
 				
 		});
 
@@ -90,4 +101,3 @@
 
 
 // Outter menu 
-
